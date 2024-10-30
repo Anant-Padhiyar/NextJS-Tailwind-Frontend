@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux'; // Import useSelector for accessing Redux state
+
 
 const Navbar = ({ categories = [] }) => {
   const router = useRouter();
@@ -18,7 +20,6 @@ const Navbar = ({ categories = [] }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isPC, setIsPC] = useState('PC');
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const checkDeviceType = () => {
@@ -33,24 +34,12 @@ const Navbar = ({ categories = [] }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart);
-  }, []);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const updatedCart = JSON.parse(localStorage.getItem('cart')) || [];
-      setCart(updatedCart);
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
-
-  const productCount = cart.length;
+  const cart = useSelector((state) => state.cart.items);
+  
+  // Calculate total item count from the cart
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  
+  const productCount = cart.length;
 
   const NavItems = ({ onClick }) => (
     <div className="text-md lg:text-xs font-bold flex flex-col md:flex-row md:space-x-3 lg:mr-8 space-y-4 md:space-y-0">
@@ -112,9 +101,9 @@ const Navbar = ({ categories = [] }) => {
             </Button>
             <Button onClick={() => router.push('/Components/Cart')} size="sm" className={`relative ${currentPath === '/Components/Cart' ? 'bg-primary text-white' : 'bg-neutral-100 text-neutral-400'} ${isPC === 'PC' ? 'hover:bg-neutral-200 hover:text-neutral-500 active:bg-neutral-300 active:text-neutral-500' : ''}`}>
               <ShoppingCart className="h-4 w-4" />
-              {productCount > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                  {productCount}
+                  {totalItems}
                 </span>
               )}
             </Button>
@@ -141,9 +130,9 @@ const Navbar = ({ categories = [] }) => {
                   </Button>
                   <Button className={`relative ${currentPath === '/Components/Cart' ? 'bg-primary text-white' : 'bg-neutral-100 text-neutral-400'} ${isPC === 'PC' ? 'hover:bg-neutral-200 hover:text-neutral-500 active:bg-neutral-300 active:text-neutral-500' : ''}`} onClick={() => router.push('/Components/Cart')}>
                     <ShoppingCart className="h-10 w-10" />
-                    {productCount > 0 && (
+                    {totalItems > 0 && (
                       <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                        {productCount}
+                        {totalItems}
                       </span>
                     )}
                   </Button>
