@@ -80,7 +80,7 @@ const Popular_Products = () => {
       <div className="bg-gray-100 px-5 text-gray-800 border-b-2 border-t-2 border-gray-300">
         <div className="border-0 pb-6 pt-6 px-0 lg:px-5 flex items-center justify-between mx-5">
           <p className="text-left text-2xl lg:text-3xl font-bold text-gray-800">most Popular Products</p>
-          <Button className="hidden lg:block text-right px-5 lg:px-16" onClick={toggleProducts}>
+          <Button className="text-right px-5 lg:px-16" onClick={toggleProducts}>
             {showAll ? "View Less" : "View All"}
           </Button>
         </div>
