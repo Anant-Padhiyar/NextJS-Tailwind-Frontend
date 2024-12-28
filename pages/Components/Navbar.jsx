@@ -125,10 +125,10 @@ const Navbar = ({ categories = [] }) => {
                   <Button className={`text-gray-400 bg-neutral-100 ${isPC === 'PC' ? 'hover:bg-neutral-200 hover:text-neutral-500 active:bg-neutral-300 active:text-neutral-500' : ''}`} onClick={() => router.push('/')}>
                     <Search className="h-10 w-10" />
                   </Button>
-                  <Button className={`text-gray-400 bg-neutral-100 ${isPC === 'PC' ? 'hover:bg-neutral-200 hover:text-neutral-500 active:bg-neutral-300 active:text-neutral-500' : ''}`} onClick={() => router.push('/')}>
+                  <Button className={`text-gray-400 bg-neutral-100 ${isPC === 'PC' ? 'text-white' : ''}`} onClick={() => router.push('/')}>
                     <UserCircle className="h-10 w-10" />
                   </Button>
-                  <Button className={`relative ${currentPath === '/Components/Cart' ? 'bg-primary text-white' : 'bg-neutral-100 text-neutral-400'} ${isPC === 'PC' ? 'hover:bg-neutral-200 hover:text-neutral-500 active:bg-neutral-300 active:text-neutral-500' : ''}`} onClick={() => router.push('/Components/Cart')}>
+                  <Button className={`relative ${currentPath === '/Components/Cart' ? 'bg-primary text-white' : 'bg-neutral-100 text-neutral-400'} ${isPC === 'PC' ? 'text-white' : ''}`} onClick={() => router.push('/Components/Cart')}>
                     <ShoppingCart className="h-10 w-10" />
                     {totalItems > 0 && (
                       <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
