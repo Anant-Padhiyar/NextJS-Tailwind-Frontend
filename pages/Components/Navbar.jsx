@@ -122,10 +122,10 @@ const Navbar = ({ categories = [] }) => {
                   <NavItems onClick={() => setIsOpen(false)} />
                 </nav>
                 <div className="mt-6 flex justify-center space-x-4">
-                  <Button className={`text-gray-400 bg-neutral-100 ${isPC === 'PC' ? 'hover:bg-neutral-200 hover:text-neutral-500 active:bg-neutral-300 active:text-neutral-500' : ''}`} onClick={() => router.push('/')}>
+                  <Button className={`text-white bg-neutral-100 ${isPC === 'PC' ? 'hover:bg-neutral-200 hover:text-neutral-500 active:bg-neutral-300 active:text-neutral-500' : ''}`} onClick={() => router.push('/')}>
                     <Search className="h-10 w-10" />
                   </Button>
-                  <Button className={`text-gray-400 bg-neutral-100 ${isPC === 'PC' ? 'text-white' : ''}`} onClick={() => router.push('/')}>
+                  <Button className={`text-white bg-neutral-100 ${isPC === 'PC' ? 'text-white' : 'text-white'}`} onClick={() => router.push('/')}>
                     <UserCircle className="h-10 w-10" />
                   </Button>
                   <Button className={`relative ${currentPath === '/Components/Cart' ? 'bg-primary text-white' : 'bg-neutral-100 text-neutral-400'} ${isPC === 'PC' ? 'text-white' : ''}`} onClick={() => router.push('/Components/Cart')}>
